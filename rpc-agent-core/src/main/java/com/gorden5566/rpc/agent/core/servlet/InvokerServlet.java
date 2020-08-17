@@ -30,7 +30,7 @@ public class InvokerServlet extends HttpServlet {
 
             HttpUtils.writeJson(response, result);
         } catch (Exception e) {
-            ResponseError error = ResponseError.newInstance("remote call failed", e, 400);
+            ResponseError error = ResponseError.newThrowableError("remote call failed", e, 400);
             HttpUtils.writeJson(response, JsonUtils.toPrettyJson(error));
         }
     }

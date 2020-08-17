@@ -14,21 +14,24 @@ public class ResponseError {
     public ResponseError() {
     }
 
-    public static ResponseError newInstance(String msg, Throwable cause, int status) {
-        ResponseError error = new ResponseError();
-        error.setMsg(msg);
-        error.setCause(ExceptionUtils.getFullStackTrace(cause));
-        error.setStatus(status);
+    public ResponseError(String msg, String cause) {
+        this.msg = msg;
+        this.cause = cause;
+    }
 
+    public static ResponseError newError(String msg, String cause, int status) {
+        ResponseError error = new ResponseError();
+        error.setCause(cause);
+        error.setMsg(msg);
+        error.setStatus(status);
         return error;
     }
 
-    public static ResponseError newInstance(String msg, String cause, int status) {
+    public static ResponseError newThrowableError(String msg, Throwable cause, int status) {
         ResponseError error = new ResponseError();
+        error.setCause(ExceptionUtils.getFullStackTrace(cause));
         error.setMsg(msg);
-        error.setCause(cause);
         error.setStatus(status);
-
         return error;
     }
 

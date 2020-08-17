@@ -7,7 +7,13 @@ import com.gorden5566.rpc.agent.core.util.ExtensionLoader;
  * @date 2020/08/17
  */
 public class InvokerProxyFactory {
-    private static InvokerProxy invokerProxy = ExtensionLoader.loadFirst(InvokerProxy.class);
+    private static InvokerProxy invokerProxy;
+    static {
+        invokerProxy = ExtensionLoader.loadFirst(InvokerProxy.class);
+        if (invokerProxy == null) {
+            invokerProxy = new DefaultInvokerProxy();
+        }
+    }
 
     public static InvokerProxy getInstance() {
         return invokerProxy;
