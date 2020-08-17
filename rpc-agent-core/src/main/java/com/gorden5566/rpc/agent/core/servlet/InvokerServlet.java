@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.alibaba.fastjson.JSON;
 import com.gorden5566.rpc.agent.core.InvokerProxyFactory;
+import com.gorden5566.rpc.agent.core.builder.RpcRequestConfigBuilder;
 import com.gorden5566.rpc.agent.core.model.ResponseError;
 import com.gorden5566.rpc.agent.core.model.RpcRequestConfig;
 import com.gorden5566.rpc.agent.core.util.HttpUtils;
@@ -22,10 +23,9 @@ public class InvokerServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
         throws ServletException, IOException {
 
-        String bodyString = HttpUtils.getBodyString(request);
-        RpcRequestConfig config = JSON.parseObject(bodyString, RpcRequestConfig.class);
-
         try {
+            RpcRequestConfig config = RpcRequestConfigBuilder.newBuilder().request(request).build();
+
             String result = InvokerProxyFactory.getInstance().invoke(config);
 
             HttpUtils.writeJson(response, result);
