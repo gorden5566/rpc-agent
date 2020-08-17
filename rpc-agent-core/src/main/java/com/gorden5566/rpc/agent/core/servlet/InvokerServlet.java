@@ -7,12 +7,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.alibaba.fastjson.JSON;
 import com.gorden5566.rpc.agent.core.InvokerProxyFactory;
 import com.gorden5566.rpc.agent.core.builder.RpcRequestConfigBuilder;
 import com.gorden5566.rpc.agent.core.model.ResponseError;
 import com.gorden5566.rpc.agent.core.model.RpcRequestConfig;
 import com.gorden5566.rpc.agent.core.util.HttpUtils;
+import com.gorden5566.rpc.agent.core.util.JsonUtils;
 
 /**
  * @author gorden5566
@@ -31,7 +31,7 @@ public class InvokerServlet extends HttpServlet {
             HttpUtils.writeJson(response, result);
         } catch (Exception e) {
             ResponseError error = ResponseError.newInstance("remote call failed", e, 400);
-            HttpUtils.writeJson(response, JSON.toJSONString(error, true));
+            HttpUtils.writeJson(response, JsonUtils.toPrettyJson(error));
         }
     }
 
