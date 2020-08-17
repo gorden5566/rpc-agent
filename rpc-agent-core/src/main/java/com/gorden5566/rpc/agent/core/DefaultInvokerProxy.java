@@ -1,10 +1,8 @@
 package com.gorden5566.rpc.agent.core;
 
+import com.gorden5566.rpc.agent.core.adapter.RpcRequestBuilderFactory;
 import com.gorden5566.rpc.agent.core.context.RpcContext;
-import com.gorden5566.rpc.agent.core.model.ResponseError;
-import com.gorden5566.rpc.agent.core.model.RpcRequest;
-import com.gorden5566.rpc.agent.core.model.RpcRequestConfig;
-import com.gorden5566.rpc.agent.core.model.RpcResponse;
+import com.gorden5566.rpc.agent.core.model.*;
 import com.gorden5566.rpc.agent.core.util.JsonUtils;
 import org.apache.commons.lang.StringUtils;
 
@@ -39,7 +37,7 @@ public class DefaultInvokerProxy implements InvokerProxy {
         invoker.start(config);
 
         // convert to request
-        RpcRequest request = null;
+        RpcRequest request = RpcRequestBuilderFactory.getInstance().buildRpcRequest(config);
 
         RpcResponse response = InvokerFactory.getInstance().invoke(request);
 
