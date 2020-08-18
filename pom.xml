@@ -11,6 +11,7 @@
     <modules>
         <module>rpc-agent-core</module>
         <module>rpc-agent-server</module>
+        <module>rpc-agent-console</module>
     </modules>
 
     <properties>
