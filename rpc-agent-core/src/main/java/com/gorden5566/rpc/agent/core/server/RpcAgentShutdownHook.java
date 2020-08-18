@@ -12,12 +12,19 @@ public class RpcAgentShutdownHook extends Thread {
     private final AtomicBoolean registered = new AtomicBoolean(false);
     private final AtomicBoolean destroyed = new AtomicBoolean(false);
 
+    private AgentServer agentServer;
+
     private RpcAgentShutdownHook(String name) {
         super(name);
     }
 
     public static RpcAgentShutdownHook getInstance() {
         return INSTANCE;
+    }
+
+    public RpcAgentShutdownHook registerAgentServer(AgentServer agentServer) {
+        this.agentServer = agentServer;
+        return this;
     }
 
     @Override
@@ -42,6 +49,12 @@ public class RpcAgentShutdownHook extends Thread {
             return;
         }
         // doDestroy
-
+        if (agentServer != null) {
+            try {
+                agentServer.stop();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
     }
 }

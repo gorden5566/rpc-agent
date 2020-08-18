@@ -2,8 +2,6 @@ package com.gorden5566.rpc.agent.core.server;
 
 import java.net.InetSocketAddress;
 
-import com.gorden5566.rpc.agent.core.AgentServer;
-
 /**
  * @author gorden5566
  * @date 2020/08/17
@@ -17,6 +15,11 @@ public abstract class AbstractAgentServer implements AgentServer {
     public AbstractAgentServer(String host, int port) {
         this.host = host;
         this.port = port;
+        this.init();
+    }
+
+    private void init() {
+        RpcAgentShutdownHook.getInstance().registerAgentServer(AbstractAgentServer.this).register();
     }
 
     public String getHost() {
