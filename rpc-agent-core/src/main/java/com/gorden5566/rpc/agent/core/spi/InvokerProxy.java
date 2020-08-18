@@ -1,6 +1,6 @@
-package com.gorden5566.rpc.agent.core;
+package com.gorden5566.rpc.agent.core.spi;
 
-import com.gorden5566.rpc.agent.core.model.RpcRequestConfig;
+import com.gorden5566.rpc.agent.core.internal.RpcRequestConfig;
 
 /**
  * @author gorden5566

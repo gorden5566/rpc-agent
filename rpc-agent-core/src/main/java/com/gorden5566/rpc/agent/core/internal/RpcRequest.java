@@ -1,4 +1,4 @@
-package com.gorden5566.rpc.agent.core.model;
+package com.gorden5566.rpc.agent.core.internal;
 
 /**
  * @author gorden5566

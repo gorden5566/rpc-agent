@@ -1,10 +1,11 @@
 package com.gorden5566.rpc.agent.core.server;
 
-import com.gorden5566.rpc.agent.core.servlet.InvokerServlet;
+import java.net.InetSocketAddress;
+
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 
-import java.net.InetSocketAddress;
+import com.gorden5566.rpc.agent.core.server.servlet.InvokerServlet;
 
 /**
  * @author gorden5566
@@ -23,8 +24,7 @@ public class JettyAgentServer extends AbstractAgentServer {
         InetSocketAddress address = new InetSocketAddress(host, port);
         server = new Server(address);
 
-        ServletContextHandler context = new ServletContextHandler(
-            ServletContextHandler.SESSIONS);
+        ServletContextHandler context = new ServletContextHandler(ServletContextHandler.SESSIONS);
         context.setContextPath("/");
         server.setHandler(context);
 

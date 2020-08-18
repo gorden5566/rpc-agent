@@ -5,7 +5,7 @@ import java.io.IOException;
 import javax.servlet.http.HttpServletRequest;
 
 import com.alibaba.fastjson.JSON;
-import com.gorden5566.rpc.agent.core.model.RpcRequestConfig;
+import com.gorden5566.rpc.agent.core.internal.RpcRequestConfig;
 import com.gorden5566.rpc.agent.core.util.HttpUtils;
 
 /**

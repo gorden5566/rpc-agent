@@ -2,12 +2,21 @@ package com.gorden5566.rpc.agent.core.util;
 
 import java.util.Iterator;
 import java.util.ServiceLoader;
+import java.util.function.Supplier;
 
 /**
  * @author gorden5566
  * @date 2020/08/17
  */
 public class ExtensionLoader {
+    public static <T> T loadFirst(Class<T> clazz, Supplier<T> supplier) {
+        Iterator<T> iterator = loadAll(clazz);
+        if (!iterator.hasNext()) {
+            return supplier.get();
+        }
+        return iterator.next();
+    }
+
     /**
      * 加载第一个 spi 实现
      *
@@ -18,9 +27,7 @@ public class ExtensionLoader {
     public static <T> T loadFirst(Class<T> clazz) {
         Iterator<T> iterator = loadAll(clazz);
         if (!iterator.hasNext()) {
-            throw new IllegalStateException(String.format(
-                "No implementation defined in /META-INF/services/%s, please check whether the file exists and has the right implementation class!",
-                clazz.getName()));
+            return null;
         }
         return iterator.next();
     }

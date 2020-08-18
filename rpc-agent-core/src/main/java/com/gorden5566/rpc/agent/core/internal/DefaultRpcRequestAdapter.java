@@ -1,7 +1,4 @@
-package com.gorden5566.rpc.agent.core.adapter;
-
-import com.gorden5566.rpc.agent.core.model.RpcRequest;
-import com.gorden5566.rpc.agent.core.model.RpcRequestConfig;
+package com.gorden5566.rpc.agent.core.internal;
 
 import java.util.UUID;
 

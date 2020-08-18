@@ -1,4 +1,4 @@
-package com.gorden5566.rpc.agent.core.servlet;
+package com.gorden5566.rpc.agent.core.server.servlet;
 
 import java.io.IOException;
 
@@ -7,10 +7,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.gorden5566.rpc.agent.core.InvokerProxyFactory;
 import com.gorden5566.rpc.agent.core.builder.RpcRequestConfigBuilder;
-import com.gorden5566.rpc.agent.core.model.ResponseError;
-import com.gorden5566.rpc.agent.core.model.RpcRequestConfig;
+import com.gorden5566.rpc.agent.core.internal.RpcRequestConfig;
+import com.gorden5566.rpc.agent.core.internal.RpcResponse;
+import com.gorden5566.rpc.agent.core.spi.InvokerProxy;
+import com.gorden5566.rpc.agent.core.spi.InvokerProxyFactory;
 import com.gorden5566.rpc.agent.core.util.HttpUtils;
 import com.gorden5566.rpc.agent.core.util.JsonUtils;
 
@@ -24,13 +25,14 @@ public class InvokerServlet extends HttpServlet {
         throws ServletException, IOException {
 
         try {
-            RpcRequestConfig config = RpcRequestConfigBuilder.newBuilder().request(request).build();
+            // parse request
+            RpcRequestConfig config = buildRpcRequestConfig(request);
 
-            String result = InvokerProxyFactory.getInstance().invoke(config);
+            String result = getInvokerProxy().invoke(config);
 
             HttpUtils.writeJson(response, result);
         } catch (Exception e) {
-            ResponseError error = ResponseError.newThrowableError("remote call failed", e, 400);
+            RpcResponse error = RpcResponse.newThrowableError("remote call failed", e);
             HttpUtils.writeJson(response, JsonUtils.toPrettyJson(error));
         }
     }
@@ -40,5 +42,13 @@ public class InvokerServlet extends HttpServlet {
         throws ServletException, IOException {
 
         doGet(request, response);
+    }
+
+    private RpcRequestConfig buildRpcRequestConfig(HttpServletRequest request) throws IOException {
+        return RpcRequestConfigBuilder.newBuilder().request(request).build();
+    }
+
+    private InvokerProxy getInvokerProxy() {
+        return InvokerProxyFactory.getInstance();
     }
 }
