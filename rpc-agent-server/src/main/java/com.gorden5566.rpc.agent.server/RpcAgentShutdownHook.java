@@ -1,4 +1,4 @@
-package com.gorden5566.rpc.agent.core.server;
+package com.gorden5566.rpc.agent.server;
 
 import java.util.concurrent.atomic.AtomicBoolean;
 

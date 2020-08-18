@@ -1,4 +1,4 @@
-package com.gorden5566.rpc.agent.core.server.servlet;
+package com.gorden5566.rpc.agent.server.servlet;
 
 import java.io.IOException;
 
@@ -7,12 +7,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.gorden5566.rpc.agent.core.builder.RpcRequestConfigBuilder;
+import com.gorden5566.rpc.agent.server.builder.RpcRequestConfigBuilder;
 import com.gorden5566.rpc.agent.core.internal.RpcRequestConfig;
 import com.gorden5566.rpc.agent.core.internal.RpcResponse;
 import com.gorden5566.rpc.agent.core.spi.InvokerProxy;
 import com.gorden5566.rpc.agent.core.spi.InvokerProxyFactory;
-import com.gorden5566.rpc.agent.core.util.HttpUtils;
+import com.gorden5566.rpc.agent.server.util.HttpUtils;
 import com.gorden5566.rpc.agent.core.util.JsonUtils;
 
 /**

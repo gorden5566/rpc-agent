@@ -1,11 +1,11 @@
-package com.gorden5566.rpc.agent.core.server;
+package com.gorden5566.rpc.agent.server;
 
 import java.net.InetSocketAddress;
 
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 
-import com.gorden5566.rpc.agent.core.server.servlet.InvokerServlet;
+import com.gorden5566.rpc.agent.server.servlet.InvokerServlet;
 
 /**
  * @author gorden5566

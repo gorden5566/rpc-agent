@@ -1,4 +1,4 @@
-package com.gorden5566.rpc.agent.core.util;
+package com.gorden5566.rpc.agent.server.util;
 
 import java.io.BufferedReader;
 import java.io.IOException;
