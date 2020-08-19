@@ -23,18 +23,38 @@ public class InstanceFactory {
         rpcFormatter = ExtensionLoader.loadFirst(RpcFormatter.class, () -> new DefaultRpcFormatter());
     }
 
+    /**
+     * this is the main entrance
+     *
+     * @return
+     */
     public static InvokerProxy getInvokerProxy() {
         return invokerProxy;
     }
 
+    /**
+     * for build a Invoker
+     *
+     * @return
+     */
     public static InvokerBuilder getInvokerBuilder() {
         return invokerBuilder;
     }
 
+    /**
+     * for parse a RpcRequestConfig
+     *
+     * @return
+     */
     public static RpcConfigParser getRpcConfigParser() {
         return rpcConfigParser;
     }
 
+    /**
+     * for formatter a RpcResponse
+     *
+     * @return
+     */
     public static RpcFormatter getRpcFormatter() {
         return rpcFormatter;
     }
