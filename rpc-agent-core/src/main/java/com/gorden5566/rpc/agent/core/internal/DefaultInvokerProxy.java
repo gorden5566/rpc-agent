@@ -1,12 +1,9 @@
 package com.gorden5566.rpc.agent.core.internal;
 
-import com.gorden5566.rpc.agent.core.spi.RpcFormatterFactory;
 import org.apache.commons.lang.StringUtils;
 
 import com.gorden5566.rpc.agent.core.context.RpcContext;
-import com.gorden5566.rpc.agent.core.spi.InvokerBuilderFactory;
 import com.gorden5566.rpc.agent.core.spi.InvokerProxy;
-import com.gorden5566.rpc.agent.core.spi.RpcRequestBuilderFactory;
 
 /**
  * @author gorden5566
@@ -51,15 +48,15 @@ public class DefaultInvokerProxy implements InvokerProxy {
 
     private Invoker getInvoker(RpcRequestConfig config) {
         // just build a new Invoker instance
-        return InvokerBuilderFactory.getInstance().build(config);
+        return InstanceFactory.getInvokerBuilder().build(config);
     }
 
     private RpcRequest buildRpcRequest(RpcRequestConfig config) {
-        return RpcRequestBuilderFactory.getInstance().buildRpcRequest(config);
+        return InstanceFactory.getRpcRequestBuilder().buildRpcRequest(config);
     }
 
     private String formatResponse(RpcResponse response) {
-        return RpcFormatterFactory.getInstance().formatResponse(response);
+        return InstanceFactory.getRpcFormatter().formatResponse(response);
     }
 
     private RpcResponse preCheck(RpcRequestConfig config) {

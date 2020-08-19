@@ -7,11 +7,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.gorden5566.rpc.agent.core.internal.InstanceFactory;
 import com.gorden5566.rpc.agent.server.builder.RpcRequestConfigBuilder;
 import com.gorden5566.rpc.agent.core.internal.RpcRequestConfig;
 import com.gorden5566.rpc.agent.core.internal.RpcResponse;
 import com.gorden5566.rpc.agent.core.spi.InvokerProxy;
-import com.gorden5566.rpc.agent.core.spi.InvokerProxyFactory;
 import com.gorden5566.rpc.agent.server.util.HttpUtils;
 import com.gorden5566.rpc.agent.core.util.JsonUtils;
 
@@ -49,6 +49,6 @@ public class InvokerServlet extends HttpServlet {
     }
 
     private InvokerProxy getInvokerProxy() {
-        return InvokerProxyFactory.getInstance();
+        return InstanceFactory.getInvokerProxy();
     }
 }

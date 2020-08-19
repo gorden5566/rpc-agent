@@ -5,6 +5,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.file.Files;
 
+import com.gorden5566.rpc.agent.core.internal.InstanceFactory;
 import org.apache.commons.lang.StringUtils;
 
 import com.alibaba.fastjson.JSON;
@@ -13,7 +14,6 @@ import com.beust.jcommander.JCommander;
 import com.beust.jcommander.Parameter;
 import com.gorden5566.rpc.agent.core.internal.RpcRequestConfig;
 import com.gorden5566.rpc.agent.core.spi.InvokerProxy;
-import com.gorden5566.rpc.agent.core.spi.InvokerProxyFactory;
 import com.gorden5566.rpc.agent.core.util.JsonUtils;
 
 /**
@@ -97,6 +97,6 @@ public class Command {
     }
 
     private InvokerProxy getInvokerProxy() {
-        return InvokerProxyFactory.getInstance();
+        return InstanceFactory.getInvokerProxy();
     }
 }
