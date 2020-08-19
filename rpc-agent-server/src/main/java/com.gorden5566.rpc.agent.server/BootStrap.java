@@ -9,11 +9,11 @@ import org.apache.commons.lang.StringUtils;
  * @date 2020/08/19
  */
 public class BootStrap {
-    private static String SPECIFICATION_TITLE = "rpc-agent-server";
+    private static String IMPLEMENTATION_TITLE = "rpc-agent-server";
     static {
-        String specificationTitle = BootStrap.class.getPackage().getSpecificationTitle();
-        if (StringUtils.isNotBlank(specificationTitle)) {
-            SPECIFICATION_TITLE = specificationTitle;
+        String implementationTitle = BootStrap.class.getPackage().getImplementationTitle();
+        if (StringUtils.isNotBlank(implementationTitle)) {
+            IMPLEMENTATION_TITLE = implementationTitle;
         }
     }
 
@@ -22,7 +22,7 @@ public class BootStrap {
 
         JCommander jc = JCommander.newBuilder()
             .addObject(command)
-            .programName("java -jar " + SPECIFICATION_TITLE + ".jar")
+            .programName("java -jar " + IMPLEMENTATION_TITLE + ".jar")
             .build();
 
         try {

@@ -54,8 +54,7 @@
                         <manifestEntries>
                             <main-Class>com.gorden5566.rpc.agent.server.BootStrap</main-Class>
                             <Implementation-Version>${project.version}</Implementation-Version>
-                            <Specification-Version>${project.version}</Specification-Version>
-                            <Specification-Title>rpc-agent-server</Specification-Title>
+                            <Implementation-Title>rpc-agent-server</Implementation-Title>
                         </manifestEntries>
                     </archive>
                 </configuration>
