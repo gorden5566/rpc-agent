@@ -1,7 +1,9 @@
 package com.gorden5566.rpc.agent.core.util;
 
 import java.util.Iterator;
+import java.util.Map;
 import java.util.ServiceLoader;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.Supplier;
 
 /**
@@ -9,12 +11,27 @@ import java.util.function.Supplier;
  * @date 2020/08/17
  */
 public class ExtensionLoader {
+
+    private static Map<Class<?>, Object> extensionMap = new ConcurrentHashMap<>();
+
     public static <T> T loadFirst(Class<T> clazz, Supplier<T> supplier) {
-        Iterator<T> iterator = loadAll(clazz);
-        if (!iterator.hasNext()) {
-            return supplier.get();
+        T extension = (T) extensionMap.get(clazz);
+
+        if (extension == null) {
+            // load first
+            extension = loadFirst(clazz);
+
+            // load default
+            if (extension == null) {
+                extension = supplier.get();
+            }
+
+            // cache instance
+            if (extension != null) {
+                extensionMap.put(clazz, extension);
+            }
         }
-        return iterator.next();
+        return extension;
     }
 
     /**
