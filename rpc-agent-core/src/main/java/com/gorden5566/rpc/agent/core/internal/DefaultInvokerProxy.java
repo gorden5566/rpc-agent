@@ -1,12 +1,12 @@
 package com.gorden5566.rpc.agent.core.internal;
 
+import com.gorden5566.rpc.agent.core.spi.RpcFormatterFactory;
 import org.apache.commons.lang.StringUtils;
 
 import com.gorden5566.rpc.agent.core.context.RpcContext;
 import com.gorden5566.rpc.agent.core.spi.InvokerBuilderFactory;
 import com.gorden5566.rpc.agent.core.spi.InvokerProxy;
 import com.gorden5566.rpc.agent.core.spi.RpcRequestBuilderFactory;
-import com.gorden5566.rpc.agent.core.util.JsonUtils;
 
 /**
  * @author gorden5566
@@ -59,13 +59,7 @@ public class DefaultInvokerProxy implements InvokerProxy {
     }
 
     private String formatResponse(RpcResponse response) {
-        if (response == null) {
-            return null;
-        }
-        if (RpcResponse.isSuccess(response)) {
-            return JsonUtils.toPrettyJson(response.getData());
-        }
-        return JsonUtils.toPrettyJson(response);
+        return RpcFormatterFactory.getInstance().formatResponse(response);
     }
 
     private RpcResponse preCheck(RpcRequestConfig config) {
