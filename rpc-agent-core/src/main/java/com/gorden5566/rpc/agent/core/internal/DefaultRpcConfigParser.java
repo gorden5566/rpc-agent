@@ -1,5 +1,7 @@
 package com.gorden5566.rpc.agent.core.internal;
 
+import java.util.UUID;
+
 import com.gorden5566.rpc.agent.core.spi.RpcConfigParser;
 
 /**
@@ -9,6 +11,14 @@ import com.gorden5566.rpc.agent.core.spi.RpcConfigParser;
 public class DefaultRpcConfigParser implements RpcConfigParser {
     @Override
     public RpcRequest parseRpcRequest(RpcRequestConfig config) {
-        return new DefaultRpcRequestAdapter(config);
+        RpcRequest request = RpcRequestBuilder.builder()
+            .serviceName(config.getService())
+            .methodName(config.getMethod())
+            .tag(config.getTag())
+            .requestJson(config.getParams().toJSONString())
+            .reqId(UUID.randomUUID().toString().replaceAll("-", ""))
+            .rpcId("1")
+            .build();
+        return request;
     }
 }

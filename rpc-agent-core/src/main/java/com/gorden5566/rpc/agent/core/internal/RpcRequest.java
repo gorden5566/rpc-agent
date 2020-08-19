@@ -4,47 +4,83 @@ package com.gorden5566.rpc.agent.core.internal;
  * @author gorden5566
  * @date 2020/08/18
  */
-public interface RpcRequest {
+public class RpcRequest {
 
     /**
-     * service name
-     *
-     * @return
+     * 接口
      */
-    String getServiceName();
+    private String serviceName;
 
     /**
-     * method name
-     *
-     * @return
+     * 方法
      */
-    String getMethodName();
+    private String methodName;
 
     /**
-     * request json
-     *
-     * @return
+     * 请求参数
      */
-    String getRequestJson();
+    private String requestJson;
 
     /**
-     * req id
-     *
-     * @return
+     * 请求id
      */
-    String getReqId();
+    private String reqId;
 
     /**
      * rpc id
-     *
-     * @return
      */
-    String getRpcId();
+    private String rpcId;
 
     /**
      * tag
-     *
-     * @return
      */
-    String getTag();
+    private String tag;
+
+    public String getServiceName() {
+        return serviceName;
+    }
+
+    public void setServiceName(String serviceName) {
+        this.serviceName = serviceName;
+    }
+
+    public String getMethodName() {
+        return methodName;
+    }
+
+    public void setMethodName(String methodName) {
+        this.methodName = methodName;
+    }
+
+    public String getRequestJson() {
+        return requestJson;
+    }
+
+    public void setRequestJson(String requestJson) {
+        this.requestJson = requestJson;
+    }
+
+    public String getReqId() {
+        return reqId;
+    }
+
+    public void setReqId(String reqId) {
+        this.reqId = reqId;
+    }
+
+    public String getRpcId() {
+        return rpcId;
+    }
+
+    public void setRpcId(String rpcId) {
+        this.rpcId = rpcId;
+    }
+
+    public String getTag() {
+        return tag;
+    }
+
+    public void setTag(String tag) {
+        this.tag = tag;
+    }
 }
