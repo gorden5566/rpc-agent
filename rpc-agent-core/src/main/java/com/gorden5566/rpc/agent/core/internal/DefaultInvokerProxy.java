@@ -80,6 +80,10 @@ public class DefaultInvokerProxy implements InvokerProxy {
             return RpcResponse.newError("invalid parameters", "[method] cannot be empty");
         }
 
+        if (config.getParams() == null) {
+            return RpcResponse.newError("invalid parameters", "[params] cannot be null");
+        }
+
         return null;
     }
 }
