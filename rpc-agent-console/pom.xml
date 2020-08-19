@@ -10,13 +10,13 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>rpc-agent-console</artifactId>
-    <version>${agent.version}</version>
+    <version>${project.version}</version>
 
     <dependencies>
         <dependency>
             <groupId>com.gorden5566</groupId>
             <artifactId>rpc-agent-core</artifactId>
-            <version>${agent.version}</version>
+            <version>${project.version}</version>
         </dependency>
 
         <dependency>

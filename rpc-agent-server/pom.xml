@@ -10,13 +10,13 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>rpc-agent-server</artifactId>
-    <version>${agent.version}</version>
+    <version>${project.version}</version>
 
     <dependencies>
         <dependency>
             <groupId>com.gorden5566</groupId>
             <artifactId>rpc-agent-core</artifactId>
-            <version>${agent.version}</version>
+            <version>${project.version}</version>
         </dependency>
 
         <dependency>
@@ -53,6 +53,9 @@
                     <archive>
                         <manifestEntries>
                             <main-Class>com.gorden5566.rpc.agent.server.BootStrap</main-Class>
+                            <Implementation-Version>${project.version}</Implementation-Version>
+                            <Specification-Version>${project.version}</Specification-Version>
+                            <Specification-Title>rpc-agent-server</Specification-Title>
                         </manifestEntries>
                     </archive>
                 </configuration>
