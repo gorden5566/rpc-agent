@@ -7,13 +7,13 @@ import com.gorden5566.rpc.agent.core.internal.RpcRequestConfig;
  * @author gorden5566
  * @date 2020/08/18
  */
-public interface RpcRequestBuilder {
+public interface RpcConfigParser {
 
     /**
-     * buildRpcRequest
+     * parseRpcRequest
      *
      * @param config
      * @return
      */
-    RpcRequest buildRpcRequest(RpcRequestConfig config);
+    RpcRequest parseRpcRequest(RpcRequestConfig config);
 }

@@ -52,7 +52,7 @@ public class DefaultInvokerProxy implements InvokerProxy {
     }
 
     private RpcRequest buildRpcRequest(RpcRequestConfig config) {
-        return InstanceFactory.getRpcRequestBuilder().buildRpcRequest(config);
+        return InstanceFactory.getRpcConfigParser().parseRpcRequest(config);
     }
 
     private String formatResponse(RpcResponse response) {
