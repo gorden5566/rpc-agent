@@ -22,6 +22,7 @@ import org.apache.commons.lang.StringUtils;
  */
 public class Command {
     private static final String DEFAULT_HOST = "127.0.0.1";
+    private static final int DEFAULT_PORT = 8080;
 
     @Parameter(names = {"-h", "--help"}, order = 1, description = "print help message")
     private boolean help = false;
@@ -39,7 +40,7 @@ public class Command {
     private boolean local = false;
 
     @Parameter(names = {"-p", "--port"}, order = 6, description = "[server mode] specified server port")
-    private int port = 8080;
+    private int port = DEFAULT_PORT;
 
     public void run(JCommander jc) {
         if (help) {
