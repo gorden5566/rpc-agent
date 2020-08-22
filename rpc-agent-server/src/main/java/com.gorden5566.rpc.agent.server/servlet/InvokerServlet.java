@@ -7,11 +7,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.gorden5566.rpc.agent.core.internal.InstanceFactory;
+import com.gorden5566.rpc.agent.core.Agent;
 import com.gorden5566.rpc.agent.server.builder.RpcRequestConfigBuilder;
 import com.gorden5566.rpc.agent.core.internal.RpcRequestConfig;
 import com.gorden5566.rpc.agent.core.internal.RpcResponse;
-import com.gorden5566.rpc.agent.core.spi.InvokerProxy;
 import com.gorden5566.rpc.agent.server.util.HttpUtils;
 import com.gorden5566.rpc.agent.core.util.JsonUtils;
 
@@ -28,7 +27,7 @@ public class InvokerServlet extends HttpServlet {
             // parse request
             RpcRequestConfig config = buildRpcRequestConfig(request);
 
-            String result = getInvokerProxy().invoke(config);
+            String result = Agent.invoke(config);
 
             HttpUtils.writeJson(response, result);
         } catch (Exception e) {
@@ -46,9 +45,5 @@ public class InvokerServlet extends HttpServlet {
 
     private RpcRequestConfig buildRpcRequestConfig(HttpServletRequest request) throws IOException {
         return RpcRequestConfigBuilder.newBuilder().request(request).build();
-    }
-
-    private InvokerProxy getInvokerProxy() {
-        return InstanceFactory.getInvokerProxy();
     }
 }

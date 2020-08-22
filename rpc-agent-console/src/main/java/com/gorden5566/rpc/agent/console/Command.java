@@ -5,7 +5,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.file.Files;
 
-import com.gorden5566.rpc.agent.core.internal.InstanceFactory;
+import com.gorden5566.rpc.agent.core.Agent;
 import org.apache.commons.lang.StringUtils;
 
 import com.alibaba.fastjson.JSON;
@@ -13,7 +13,6 @@ import com.alibaba.fastjson.JSONArray;
 import com.beust.jcommander.JCommander;
 import com.beust.jcommander.Parameter;
 import com.gorden5566.rpc.agent.core.internal.RpcRequestConfig;
-import com.gorden5566.rpc.agent.core.spi.InvokerProxy;
 import com.gorden5566.rpc.agent.core.util.JsonUtils;
 
 /**
@@ -88,15 +87,11 @@ public class Command {
         }
 
         try {
-            String result = getInvokerProxy().invoke(config);
+            String result = Agent.invoke(config);
             System.out.println(result);
         } catch (Exception e) {
             System.out.println("remote call failed: " + e.getMessage());
         }
         return true;
-    }
-
-    private InvokerProxy getInvokerProxy() {
-        return InstanceFactory.getInvokerProxy();
     }
 }
