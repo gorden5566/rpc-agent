@@ -47,6 +47,8 @@
                     <archive>
                         <manifestEntries>
                             <main-Class>com.gorden5566.rpc.agent.console.BootStrap</main-Class>
+                            <Implementation-Version>${project.version}</Implementation-Version>
+                            <Implementation-Title>rpc-agent-core</Implementation-Title>
                         </manifestEntries>
                     </archive>
                 </configuration>
