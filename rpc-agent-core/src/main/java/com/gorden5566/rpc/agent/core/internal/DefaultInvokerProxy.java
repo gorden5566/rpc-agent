@@ -31,7 +31,7 @@ public class DefaultInvokerProxy implements InvokerProxy {
             return responseError;
         }
 
-        // build request
+        // getInvoker request
         RpcRequest request = buildRpcRequest(config);
 
         // get invoker
@@ -47,8 +47,8 @@ public class DefaultInvokerProxy implements InvokerProxy {
     }
 
     private Invoker getInvoker(RpcRequestConfig config) {
-        // just build a new Invoker instance
-        return InstanceFactory.getInvokerBuilder().build(config);
+        // get a Invoker instance
+        return InstanceFactory.getInvokerFactory().getInvoker(config);
     }
 
     private RpcRequest buildRpcRequest(RpcRequestConfig config) {

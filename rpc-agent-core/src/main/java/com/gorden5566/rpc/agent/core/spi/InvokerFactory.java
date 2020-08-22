@@ -7,13 +7,13 @@ import com.gorden5566.rpc.agent.core.internal.RpcRequestConfig;
  * @author gorden5566
  * @date 2020/08/19
  */
-public interface InvokerBuilder {
+public interface InvokerFactory {
 
     /**
-     * build invoker
+     * get a Invoker
      *
      * @param config
      * @return
      */
-    Invoker build(RpcRequestConfig config);
+    Invoker getInvoker(RpcRequestConfig config);
 }

@@ -1,6 +1,6 @@
 package com.gorden5566.rpc.agent.core.internal;
 
-import com.gorden5566.rpc.agent.core.spi.InvokerBuilder;
+import com.gorden5566.rpc.agent.core.spi.InvokerFactory;
 import com.gorden5566.rpc.agent.core.spi.InvokerProxy;
 import com.gorden5566.rpc.agent.core.spi.RpcFormatter;
 import com.gorden5566.rpc.agent.core.spi.RpcConfigParser;
@@ -12,13 +12,13 @@ import com.gorden5566.rpc.agent.core.util.ExtensionLoader;
  */
 public class InstanceFactory {
     private static InvokerProxy invokerProxy;
-    private static InvokerBuilder invokerBuilder;
+    private static InvokerFactory invokerFactory;
     private static RpcConfigParser rpcConfigParser;
     private static RpcFormatter rpcFormatter;
 
     static {
         invokerProxy = ExtensionLoader.loadFirst(InvokerProxy.class, () -> new DefaultInvokerProxy());
-        invokerBuilder = ExtensionLoader.loadFirst(InvokerBuilder.class, () -> new DefaultInvokerBuilder());
+        invokerFactory = ExtensionLoader.loadFirst(InvokerFactory.class, () -> new DefaultInvokerFactory());
         rpcConfigParser = ExtensionLoader.loadFirst(RpcConfigParser.class, () -> new DefaultRpcConfigParser());
         rpcFormatter = ExtensionLoader.loadFirst(RpcFormatter.class, () -> new DefaultRpcFormatter());
     }
@@ -33,12 +33,12 @@ public class InstanceFactory {
     }
 
     /**
-     * for build a Invoker
+     * for getInvoker a Invoker
      *
      * @return
      */
-    public static InvokerBuilder getInvokerBuilder() {
-        return invokerBuilder;
+    public static InvokerFactory getInvokerFactory() {
+        return invokerFactory;
     }
 
     /**
