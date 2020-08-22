@@ -12,23 +12,23 @@ import com.gorden5566.rpc.agent.core.spi.InvokerProxy;
 public class DefaultInvokerProxy implements InvokerProxy {
     @Override
     public String invoke(RpcRequestConfig config) throws Exception {
+        RpcResponse response = null;
+
         try {
             RpcContext.getContext().setTag(config.getTag());
-
-            return doInvoke(config);
-        } catch (Exception e) {
-            e.printStackTrace();
+            response = doInvoke(config);
         } finally {
             RpcContext.removeContext();
         }
-        return null;
+
+        return formatResponse(response);
     }
 
-    private String doInvoke(RpcRequestConfig config) throws Exception {
+    private RpcResponse doInvoke(RpcRequestConfig config) throws Exception {
         // check config
         RpcResponse responseError = preCheck(config);
         if (responseError != null) {
-            return formatResponse(responseError);
+            return responseError;
         }
 
         // build request
@@ -43,7 +43,7 @@ public class DefaultInvokerProxy implements InvokerProxy {
 
         invoker.stop();
 
-        return formatResponse(response);
+        return response;
     }
 
     private Invoker getInvoker(RpcRequestConfig config) {
