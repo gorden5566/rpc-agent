@@ -62,7 +62,7 @@ public class Command {
             try {
                 server.start();
             } catch (Exception e) {
-                e.printStackTrace();
+                System.out.println("start server failed!");
             }
             return;
         }
