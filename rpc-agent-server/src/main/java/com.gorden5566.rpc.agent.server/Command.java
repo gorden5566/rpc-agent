@@ -11,6 +11,7 @@ import com.beust.jcommander.JCommander;
 import com.beust.jcommander.Parameter;
 import com.gorden5566.rpc.agent.core.Agent;
 import com.gorden5566.rpc.agent.core.internal.RpcRequestConfig;
+import com.gorden5566.rpc.agent.core.util.Consts;
 import com.gorden5566.rpc.agent.core.util.JsonUtils;
 import com.gorden5566.rpc.agent.server.util.NetUtils;
 import org.apache.commons.lang.StringUtils;
@@ -41,9 +42,17 @@ public class Command {
     @Parameter(names = {"-p", "--port"}, order = 6, description = "[server mode] specified server port")
     private int port = DEFAULT_PORT;
 
+    @Parameter(names = {"-v", "--version"}, order = 7, description = "print version info")
+    private boolean version = false;
+
     public void run(JCommander jc) {
         if (help) {
             jc.usage();
+            return;
+        }
+
+        if (version) {
+            System.out.println(Consts.getProgramName() + ", version " + Consts.getVersion());
             return;
         }
 

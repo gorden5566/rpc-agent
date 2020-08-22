@@ -2,6 +2,7 @@ package com.gorden5566.rpc.agent.console;
 
 import com.beust.jcommander.JCommander;
 import com.beust.jcommander.ParameterException;
+import com.gorden5566.rpc.agent.core.util.Consts;
 
 /**
  * @author gorden5566
@@ -14,7 +15,7 @@ public class BootStrap {
 
         JCommander jc = JCommander.newBuilder()
             .addObject(command)
-            .programName("java -jar rpc-agent-console.jar")
+            .programName(getProgramName())
             .build();
 
         try {
@@ -26,5 +27,11 @@ public class BootStrap {
         }
 
         command.run(jc);
+    }
+
+    private static String getProgramName() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("java -jar ").append(Consts.getProgramName()).append(".jar");
+        return sb.toString();
     }
 }

@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 
 import com.gorden5566.rpc.agent.core.Agent;
+import com.gorden5566.rpc.agent.core.util.Consts;
 import org.apache.commons.lang.StringUtils;
 
 import com.alibaba.fastjson.JSON;
@@ -29,9 +30,17 @@ public class Command {
     @Parameter(names = {"-f", "--file"}, order = 3, description = "specified config file")
     private String file = "request.json";
 
+    @Parameter(names = {"-v", "--version"}, order = 7, description = "print version info")
+    private boolean version = false;
+
     public void run(JCommander jc) {
         if (help) {
             jc.usage();
+            return;
+        }
+
+        if (version) {
+            System.out.println(Consts.getProgramName() + ", version " + Consts.getVersion());
             return;
         }
 
