@@ -10,6 +10,11 @@ import com.gorden5566.rpc.agent.core.spi.RpcConfigParser;
  */
 public class DefaultRpcConfigParser implements RpcConfigParser {
     @Override
+    public RpcRequestConfig processRpcRequest(RpcRequestConfig config) {
+        return config;
+    }
+
+    @Override
     public RpcRequest parseRpcRequest(RpcRequestConfig config) {
         RpcRequest request = RpcRequestBuilder.builder()
             .serviceName(config.getService())

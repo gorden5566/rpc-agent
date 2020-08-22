@@ -10,6 +10,14 @@ import com.gorden5566.rpc.agent.core.internal.RpcRequestConfig;
 public interface RpcConfigParser {
 
     /**
+     * processRpcRequest
+     *
+     * @param config
+     * @return
+     */
+    RpcRequestConfig processRpcRequest(RpcRequestConfig config);
+
+    /**
      * parseRpcRequest
      *
      * @param config

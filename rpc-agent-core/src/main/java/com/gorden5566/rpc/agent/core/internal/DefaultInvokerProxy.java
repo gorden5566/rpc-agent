@@ -25,17 +25,20 @@ public class DefaultInvokerProxy implements InvokerProxy {
     }
 
     private RpcResponse doInvoke(RpcRequestConfig config) throws Exception {
+        // process config
+        RpcRequestConfig mergedConfig = processRpcRequest(config);
+
         // check config
-        RpcResponse responseError = preCheck(config);
+        RpcResponse responseError = checkConfig(mergedConfig);
         if (responseError != null) {
             return responseError;
         }
 
         // getInvoker request
-        RpcRequest request = buildRpcRequest(config);
+        RpcRequest request = buildRpcRequest(mergedConfig);
 
         // get invoker
-        Invoker invoker = getInvoker(config);
+        Invoker invoker = getInvoker(mergedConfig);
         invoker.start();
 
         // do invoke
@@ -59,7 +62,7 @@ public class DefaultInvokerProxy implements InvokerProxy {
         return InstanceFactory.getRpcFormatter().formatResponse(response);
     }
 
-    private RpcResponse preCheck(RpcRequestConfig config) {
+    private RpcResponse checkConfig(RpcRequestConfig config) {
         if (config == null) {
             return RpcResponse.newError("invalid parameters", "config cannot be null");
         }
@@ -85,5 +88,9 @@ public class DefaultInvokerProxy implements InvokerProxy {
         }
 
         return null;
+    }
+
+    private RpcRequestConfig processRpcRequest(RpcRequestConfig config) {
+        return InstanceFactory.getRpcConfigParser().processRpcRequest(config);
     }
 }
