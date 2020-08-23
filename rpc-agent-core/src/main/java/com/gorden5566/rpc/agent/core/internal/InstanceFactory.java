@@ -1,34 +1,19 @@
 package com.gorden5566.rpc.agent.core.internal;
 
 import com.gorden5566.rpc.agent.core.spi.*;
-import com.gorden5566.rpc.agent.core.util.ExtensionLoader;
 
 /**
  * @author gorden5566
  * @date 2020/08/20
  */
 public class InstanceFactory {
-    private static InvokerProxy invokerProxy;
-    private static InvokerFactory invokerFactory;
-    private static InvokerBuilder invokerBuilder;
-    private static RpcConfigParser rpcConfigParser;
-    private static RpcFormatter rpcFormatter;
-
-    static {
-        invokerProxy = ExtensionLoader.loadFirst(InvokerProxy.class, () -> new DefaultInvokerProxy());
-        invokerFactory = ExtensionLoader.loadFirst(InvokerFactory.class, () -> new DefaultInvokerFactory());
-        invokerBuilder = ExtensionLoader.loadFirst(InvokerBuilder.class, () -> new DefaultInvokerBuilder());
-        rpcConfigParser = ExtensionLoader.loadFirst(RpcConfigParser.class, () -> new DefaultRpcConfigParser());
-        rpcFormatter = ExtensionLoader.loadFirst(RpcFormatter.class, () -> new DefaultRpcFormatter());
-    }
-
     /**
      * this is the main entrance
      *
      * @return
      */
     public static InvokerProxy getInvokerProxy() {
-        return invokerProxy;
+        return InvokerProxyManager.getInvokerProxy();
     }
 
     /**
@@ -37,7 +22,7 @@ public class InstanceFactory {
      * @return
      */
     public static InvokerFactory getInvokerFactory() {
-        return invokerFactory;
+        return InvokerFactoryManager.getInvokerFactory();
     }
 
     /**
@@ -46,7 +31,7 @@ public class InstanceFactory {
      * @return
      */
     public static InvokerBuilder getInvokerBuilder() {
-        return invokerBuilder;
+        return InvokerBuilderManager.getInstance();
     }
 
     /**
@@ -55,7 +40,7 @@ public class InstanceFactory {
      * @return
      */
     public static RpcConfigParser getRpcConfigParser() {
-        return rpcConfigParser;
+        return RpcConfigParserManager.getInstance();
     }
 
     /**
@@ -64,6 +49,6 @@ public class InstanceFactory {
      * @return
      */
     public static RpcFormatter getRpcFormatter() {
-        return rpcFormatter;
+        return RpcFormatterManager.getInstance();
     }
 }
