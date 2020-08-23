@@ -3,32 +3,19 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>rpc-agent-parent</artifactId>
+        <artifactId>rpc-agent-demo</artifactId>
         <groupId>com.gorden5566</groupId>
         <version>1.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>rpc-agent-server</artifactId>
-    <version>${project.version}</version>
+    <artifactId>rpc-agent-simple</artifactId>
     <packaging>jar</packaging>
 
     <dependencies>
         <dependency>
             <groupId>com.gorden5566</groupId>
-            <artifactId>rpc-agent-core</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.eclipse.jetty</groupId>
-            <artifactId>jetty-servlet</artifactId>
-            <version>9.4.31.v20200723</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.beust</groupId>
-            <artifactId>jcommander</artifactId>
-            <version>1.71</version>
+            <artifactId>rpc-agent-server</artifactId>
         </dependency>
     </dependencies>
 
@@ -54,7 +41,7 @@
                         <manifestEntries>
                             <main-Class>com.gorden5566.rpc.agent.server.BootStrap</main-Class>
                             <Implementation-Version>${project.version}</Implementation-Version>
-                            <Implementation-Title>rpc-agent-server</Implementation-Title>
+                            <Implementation-Title>rpc-agent-simple</Implementation-Title>
                         </manifestEntries>
                     </archive>
                 </configuration>

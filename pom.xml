@@ -5,13 +5,15 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.gorden5566</groupId>
-    <artifactId>rpc-agent</artifactId>
+    <artifactId>rpc-agent-parent</artifactId>
     <packaging>pom</packaging>
+    <name>${project.artifactId}</name>
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>rpc-agent-core</module>
         <module>rpc-agent-server</module>
         <module>rpc-agent-console</module>
+        <module>rpc-agent-demo</module>
     </modules>
 
     <properties>
@@ -21,6 +23,28 @@
 
         <project.version>1.0-SNAPSHOT</project.version>
     </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.gorden5566</groupId>
+                <artifactId>rpc-agent-core</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.gorden5566</groupId>
+                <artifactId>rpc-agent-console</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.gorden5566</groupId>
+                <artifactId>rpc-agent-server</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
 
 </project>
