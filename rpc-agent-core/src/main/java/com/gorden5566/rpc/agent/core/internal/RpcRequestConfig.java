@@ -13,6 +13,7 @@ public class RpcRequestConfig {
     private String method;
     private String tag;
     private JSONArray params;
+    private JSONArray paramTypes;
 
     public String getHost() {
         return host;
@@ -62,15 +63,24 @@ public class RpcRequestConfig {
         this.params = params;
     }
 
+    public JSONArray getParamTypes() {
+        return paramTypes;
+    }
+
+    public void setParamTypes(JSONArray paramTypes) {
+        this.paramTypes = paramTypes;
+    }
+
     @Override
     public String toString() {
         return "RpcRequestConfig{" +
-                "host='" + host + '\'' +
-                ", port=" + port +
-                ", service='" + service + '\'' +
-                ", method='" + method + '\'' +
-                ", tag='" + tag + '\'' +
-                ", params=" + params +
-                '}';
+            "host='" + host + '\'' +
+            ", port=" + port +
+            ", service='" + service + '\'' +
+            ", method='" + method + '\'' +
+            ", tag='" + tag + '\'' +
+            ", params=" + params +
+            ", paramTypes=" + paramTypes +
+            '}';
     }
 }

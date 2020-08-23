@@ -1,12 +1,13 @@
 package com.gorden5566.rpc.agent.core.internal;
 
-import com.gorden5566.rpc.agent.core.spi.InvokerFactory;
-import com.gorden5566.rpc.agent.core.spi.RpcConfigParser;
-import com.gorden5566.rpc.agent.core.spi.RpcFormatter;
 import org.apache.commons.lang.StringUtils;
 
+import com.alibaba.fastjson.JSONArray;
 import com.gorden5566.rpc.agent.core.context.RpcContext;
+import com.gorden5566.rpc.agent.core.spi.InvokerFactory;
 import com.gorden5566.rpc.agent.core.spi.InvokerProxy;
+import com.gorden5566.rpc.agent.core.spi.RpcConfigParser;
+import com.gorden5566.rpc.agent.core.spi.RpcFormatter;
 
 /**
  * @author gorden5566
@@ -92,6 +93,14 @@ public class DefaultInvokerProxy implements InvokerProxy {
 
         if (config.getParams() == null) {
             return RpcResponse.newError("invalid parameters", "[params] cannot be null");
+        }
+
+        if (config.getParamTypes() != null) {
+            JSONArray params = config.getParams();
+            JSONArray paramTypes = config.getParamTypes();
+            if (params.size() != paramTypes.size()) {
+                return RpcResponse.newError("invalid parameters", "[paramTypes] should matches with [params]");
+            }
         }
 
         return null;

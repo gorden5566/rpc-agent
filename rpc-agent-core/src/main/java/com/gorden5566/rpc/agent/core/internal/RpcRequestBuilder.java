@@ -18,7 +18,12 @@ public class RpcRequestBuilder {
     /**
      * 请求参数
      */
-    private String requestJson;
+    private String params;
+
+    /**
+     * 请求参数类型
+     */
+    private String paramTypes;
 
     /**
      * 请求id
@@ -49,8 +54,13 @@ public class RpcRequestBuilder {
         return this;
     }
 
-    public RpcRequestBuilder requestJson(String requestJson) {
-        this.requestJson = requestJson;
+    public RpcRequestBuilder params(String params) {
+        this.params = params;
+        return this;
+    }
+
+    public RpcRequestBuilder paramTypes(String paramTypes) {
+        this.paramTypes = paramTypes;
         return this;
     }
 
@@ -73,7 +83,8 @@ public class RpcRequestBuilder {
         RpcRequest request = new RpcRequest();
         request.setServiceName(serviceName);
         request.setMethodName(methodName);
-        request.setRequestJson(requestJson);
+        request.setParams(params);
+        request.setParamTypes(paramTypes);
         request.setReqId(reqId);
         request.setRpcId(rpcId);
         request.setTag(tag);

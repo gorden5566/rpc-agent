@@ -19,7 +19,12 @@ public class RpcRequest {
     /**
      * 请求参数
      */
-    private String requestJson;
+    private String params;
+
+    /**
+     * 请求参数类型
+     */
+    private String paramTypes;
 
     /**
      * 请求id
@@ -52,12 +57,20 @@ public class RpcRequest {
         this.methodName = methodName;
     }
 
-    public String getRequestJson() {
-        return requestJson;
+    public String getParams() {
+        return params;
     }
 
-    public void setRequestJson(String requestJson) {
-        this.requestJson = requestJson;
+    public void setParams(String params) {
+        this.params = params;
+    }
+
+    public String getParamTypes() {
+        return paramTypes;
+    }
+
+    public void setParamTypes(String paramTypes) {
+        this.paramTypes = paramTypes;
     }
 
     public String getReqId() {
