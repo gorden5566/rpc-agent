@@ -1,5 +1,8 @@
 package com.gorden5566.rpc.agent.core.internal;
 
+import com.gorden5566.rpc.agent.core.spi.InvokerFactory;
+import com.gorden5566.rpc.agent.core.spi.RpcConfigParser;
+import com.gorden5566.rpc.agent.core.spi.RpcFormatter;
 import org.apache.commons.lang.StringUtils;
 
 import com.gorden5566.rpc.agent.core.context.RpcContext;
@@ -10,6 +13,10 @@ import com.gorden5566.rpc.agent.core.spi.InvokerProxy;
  * @date 2020/08/17
  */
 public class DefaultInvokerProxy implements InvokerProxy {
+    private RpcConfigParser rpcConfigParser = InstanceFactory.getRpcConfigParser();
+    private InvokerFactory invokerFactory = InstanceFactory.getInvokerFactory();
+    private RpcFormatter rpcFormatter = InstanceFactory.getRpcFormatter();
+
     @Override
     public String invoke(RpcRequestConfig config) throws Exception {
         RpcResponse response = null;
@@ -26,19 +33,19 @@ public class DefaultInvokerProxy implements InvokerProxy {
 
     private RpcResponse doInvoke(RpcRequestConfig config) throws Exception {
         // process config
-        RpcRequestConfig mergedConfig = processRpcRequest(config);
+        RpcRequestConfig processedConfig = processRpcRequest(config);
 
         // check config
-        RpcResponse responseError = checkConfig(mergedConfig);
+        RpcResponse responseError = checkConfig(processedConfig);
         if (responseError != null) {
             return responseError;
         }
 
-        // getInvoker request
-        RpcRequest request = buildRpcRequest(mergedConfig);
+        // build rpc request
+        RpcRequest request = buildRpcRequest(processedConfig);
 
         // get invoker
-        Invoker invoker = getInvoker(mergedConfig);
+        Invoker invoker = getInvoker(processedConfig);
         invoker.start();
 
         // do invoke
@@ -51,15 +58,15 @@ public class DefaultInvokerProxy implements InvokerProxy {
 
     private Invoker getInvoker(RpcRequestConfig config) {
         // get a Invoker instance
-        return InstanceFactory.getInvokerFactory().getInvoker(config);
+        return invokerFactory.getInvoker(config);
     }
 
     private RpcRequest buildRpcRequest(RpcRequestConfig config) {
-        return InstanceFactory.getRpcConfigParser().parseRpcRequest(config);
+        return rpcConfigParser.parseRpcRequest(config);
     }
 
     private String formatResponse(RpcResponse response) {
-        return InstanceFactory.getRpcFormatter().formatResponse(response);
+        return rpcFormatter.formatResponse(response);
     }
 
     private RpcResponse checkConfig(RpcRequestConfig config) {
@@ -91,6 +98,6 @@ public class DefaultInvokerProxy implements InvokerProxy {
     }
 
     private RpcRequestConfig processRpcRequest(RpcRequestConfig config) {
-        return InstanceFactory.getRpcConfigParser().processRpcRequest(config);
+        return rpcConfigParser.processRpcRequest(config);
     }
 }
