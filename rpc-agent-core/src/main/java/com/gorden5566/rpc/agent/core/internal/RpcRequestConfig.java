@@ -12,6 +12,7 @@ public class RpcRequestConfig {
     private String service;
     private String method;
     private String tag;
+    private Integer timeout;
     private JSONArray params;
     private JSONArray paramTypes;
 
@@ -55,6 +56,14 @@ public class RpcRequestConfig {
         this.tag = tag;
     }
 
+    public Integer getTimeout() {
+        return timeout;
+    }
+
+    public void setTimeout(Integer timeout) {
+        this.timeout = timeout;
+    }
+
     public JSONArray getParams() {
         return params;
     }
@@ -79,6 +88,7 @@ public class RpcRequestConfig {
             ", service='" + service + '\'' +
             ", method='" + method + '\'' +
             ", tag='" + tag + '\'' +
+            ", timeout=" + timeout +
             ", params=" + params +
             ", paramTypes=" + paramTypes +
             '}';
