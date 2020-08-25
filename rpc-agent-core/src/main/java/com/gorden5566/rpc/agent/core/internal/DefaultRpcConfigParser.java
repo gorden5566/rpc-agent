@@ -11,6 +11,18 @@ import com.gorden5566.rpc.agent.core.spi.RpcConfigParser;
  */
 public class DefaultRpcConfigParser implements RpcConfigParser {
     @Override
+    public RpcRequestConfig buildDefaultConfig() {
+        RpcRequestConfig config = new RpcRequestConfig();
+        config.setPort(1234);
+        config.setHost("127.0.0.1");
+        config.setService("com.gorden5566.demo.service.HelloService");
+        config.setMethod("sayHello");
+        config.setTag("test");
+        config.setParams(new JSONArray());
+        return config;
+    }
+
+    @Override
     public RpcRequestConfig processRpcRequest(RpcRequestConfig config) {
         return config;
     }

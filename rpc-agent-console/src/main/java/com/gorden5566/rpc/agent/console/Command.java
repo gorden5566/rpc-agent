@@ -6,11 +6,11 @@ import java.io.IOException;
 import java.nio.file.Files;
 
 import com.gorden5566.rpc.agent.core.Agent;
+import com.gorden5566.rpc.agent.core.internal.InstanceFactory;
 import com.gorden5566.rpc.agent.core.util.Consts;
 import org.apache.commons.lang.StringUtils;
 
 import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONArray;
 import com.beust.jcommander.JCommander;
 import com.beust.jcommander.Parameter;
 import com.gorden5566.rpc.agent.core.internal.RpcRequestConfig;
@@ -62,13 +62,7 @@ public class Command {
 
     private void export(String fileName) {
         try (FileOutputStream outputStream = new FileOutputStream(fileName)){
-            RpcRequestConfig config = new RpcRequestConfig();
-            config.setPort(1234);
-            config.setHost("127.0.0.1");
-            config.setService("com.gorden5566.demo.service.HelloService");
-            config.setMethod("sayHello");
-            config.setTag("test");
-            config.setParams(new JSONArray());
+            RpcRequestConfig config = InstanceFactory.getRpcConfigParser().buildDefaultConfig();
 
             String str = JsonUtils.toPrettyJson(config);
             outputStream.write(str.getBytes());

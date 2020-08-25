@@ -10,6 +10,13 @@ import com.gorden5566.rpc.agent.core.internal.RpcRequestConfig;
 public interface RpcConfigParser {
 
     /**
+     * build a sample config
+     *
+     * @return
+     */
+    RpcRequestConfig buildDefaultConfig();
+
+    /**
      * processRpcRequest
      *
      * @param config
