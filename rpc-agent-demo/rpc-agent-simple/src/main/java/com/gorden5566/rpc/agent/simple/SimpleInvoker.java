@@ -2,8 +2,8 @@ package com.gorden5566.rpc.agent.simple;
 
 import com.gorden5566.rpc.agent.core.internal.Invoker;
 import com.gorden5566.rpc.agent.core.internal.RpcRequest;
-import com.gorden5566.rpc.agent.core.internal.RpcRequestConfig;
 import com.gorden5566.rpc.agent.core.internal.RpcResponse;
+import com.gorden5566.rpc.agent.core.internal.config.InvokerConfig;
 
 /**
  * @author gorden5566
@@ -11,12 +11,12 @@ import com.gorden5566.rpc.agent.core.internal.RpcResponse;
  */
 public class SimpleInvoker implements Invoker {
 
-    private RpcRequestConfig config;
+    private InvokerConfig config;
 
     public SimpleInvoker() {
     }
 
-    public SimpleInvoker(RpcRequestConfig config) {
+    public SimpleInvoker(InvokerConfig config) {
         this.config = config;
     }
 

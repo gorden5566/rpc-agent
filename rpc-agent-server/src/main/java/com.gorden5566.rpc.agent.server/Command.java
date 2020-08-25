@@ -85,7 +85,7 @@ public class Command {
 
     private void export(String fileName) {
         try (FileOutputStream outputStream = new FileOutputStream(fileName)){
-            RpcRequestConfig config = InstanceFactory.getRpcConfigParser().buildDefaultConfig();
+            RpcRequestConfig config = InstanceFactory.getRpcConfigParser().getConfigSample();
 
             String str = JsonUtils.toPrettyJson(config);
             outputStream.write(str.getBytes());

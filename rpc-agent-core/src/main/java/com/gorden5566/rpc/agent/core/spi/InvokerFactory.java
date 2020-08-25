@@ -1,7 +1,7 @@
 package com.gorden5566.rpc.agent.core.spi;
 
+import com.gorden5566.rpc.agent.core.internal.config.InvokerConfig;
 import com.gorden5566.rpc.agent.core.internal.Invoker;
-import com.gorden5566.rpc.agent.core.internal.RpcRequestConfig;
 
 /**
  * @author gorden5566
@@ -15,5 +15,5 @@ public interface InvokerFactory {
      * @param config
      * @return
      */
-    Invoker getInvoker(RpcRequestConfig config);
+    Invoker getInvoker(InvokerConfig config);
 }

@@ -1,5 +1,6 @@
 package com.gorden5566.rpc.agent.core.internal;
 
+import com.gorden5566.rpc.agent.core.internal.config.InvokerConfig;
 import com.gorden5566.rpc.agent.core.spi.InvokerBuilder;
 import com.gorden5566.rpc.agent.core.spi.InvokerFactory;
 
@@ -11,7 +12,7 @@ public class DefaultInvokerFactory implements InvokerFactory {
     private InvokerBuilder invokerBuilder = InstanceFactory.getInvokerBuilder();
 
     @Override
-    public Invoker getInvoker(RpcRequestConfig config) {
+    public Invoker getInvoker(InvokerConfig config) {
         // just build a invoker instance now
         return invokerBuilder.buildInvoker(config);
     }

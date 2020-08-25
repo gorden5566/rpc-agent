@@ -9,7 +9,7 @@ import com.gorden5566.rpc.agent.core.internal.RpcResponse;
 public interface RpcFormatter {
 
     /**
-     * formatResponse
+     * format response
      *
      * @param response
      * @return

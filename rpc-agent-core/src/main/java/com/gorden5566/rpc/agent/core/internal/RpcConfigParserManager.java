@@ -1,5 +1,6 @@
 package com.gorden5566.rpc.agent.core.internal;
 
+import com.gorden5566.rpc.agent.core.internal.config.DefaultRpcConfigParser;
 import com.gorden5566.rpc.agent.core.spi.RpcConfigParser;
 import com.gorden5566.rpc.agent.core.util.ExtensionLoader;
 

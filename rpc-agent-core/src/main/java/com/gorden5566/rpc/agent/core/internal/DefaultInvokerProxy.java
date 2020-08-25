@@ -1,8 +1,7 @@
 package com.gorden5566.rpc.agent.core.internal;
 
-import org.apache.commons.lang.StringUtils;
-
-import com.alibaba.fastjson.JSONArray;
+import com.gorden5566.rpc.agent.core.internal.config.InvokerConfig;
+import com.gorden5566.rpc.agent.core.internal.config.ParsedRequestConfig;
 import com.gorden5566.rpc.agent.core.context.RpcContext;
 import com.gorden5566.rpc.agent.core.spi.InvokerFactory;
 import com.gorden5566.rpc.agent.core.spi.InvokerProxy;
@@ -34,79 +33,38 @@ public class DefaultInvokerProxy implements InvokerProxy {
 
     private RpcResponse doInvoke(RpcRequestConfig config) throws Exception {
         // process config
-        RpcRequestConfig processedConfig = processRpcRequest(config);
-
-        // check config
-        RpcResponse responseError = checkConfig(processedConfig);
+        RpcResponse responseError = processConfig(config);
         if (responseError != null) {
             return responseError;
         }
 
-        // build rpc request
-        RpcRequest request = buildRpcRequest(processedConfig);
+        // parse config
+        ParsedRequestConfig parsedConfig = parseConfig(config);
 
         // get invoker
-        Invoker invoker = getInvoker(processedConfig);
-        invoker.start();
+        Invoker invoker = getInvoker(parsedConfig.getInvokerConfig());
 
         // do invoke
-        RpcResponse response = invoker.invoke(request);
-
+        invoker.start();
+        RpcResponse response = invoker.invoke(parsedConfig.getRpcRequest());
         invoker.stop();
 
         return response;
     }
 
-    private Invoker getInvoker(RpcRequestConfig config) {
-        // get a Invoker instance
+    private Invoker getInvoker(InvokerConfig config) {
         return invokerFactory.getInvoker(config);
     }
 
-    private RpcRequest buildRpcRequest(RpcRequestConfig config) {
-        return rpcConfigParser.parseRpcRequest(config);
+    private ParsedRequestConfig parseConfig(RpcRequestConfig config) {
+        return rpcConfigParser.parseConfig(config);
     }
 
     private String formatResponse(RpcResponse response) {
         return rpcFormatter.formatResponse(response);
     }
 
-    private RpcResponse checkConfig(RpcRequestConfig config) {
-        if (config == null) {
-            return RpcResponse.newError("invalid parameters", "config cannot be null");
-        }
-
-        if (StringUtils.isBlank(config.getHost())) {
-            return RpcResponse.newError("invalid parameters", "[host] cannot be empty");
-        }
-
-        if (config.getPort() == null) {
-            return RpcResponse.newError("invalid parameters", "[port] cannot be empty");
-        }
-
-        if (StringUtils.isBlank(config.getService())) {
-            return RpcResponse.newError("invalid parameters", "[service] cannot be empty");
-        }
-
-        if (StringUtils.isBlank(config.getMethod())) {
-            return RpcResponse.newError("invalid parameters", "[method] cannot be empty");
-        }
-
-        if (config.getParams() == null) {
-            return RpcResponse.newError("invalid parameters", "[params] cannot be null");
-        }
-
-        if (config.getParamTypes() != null) {
-            JSONArray params = config.getParams();
-            JSONArray paramTypes = config.getParamTypes();
-            if (params.size() != paramTypes.size()) {
-                return RpcResponse.newError("invalid parameters", "[paramTypes] should matches with [params]");
-            }
-        }
-
-        return null;
-    }
-
-    private RpcRequestConfig processRpcRequest(RpcRequestConfig config) {
-        return rpcConfigParser.processRpcRequest(config);
+    private RpcResponse processConfig(RpcRequestConfig config) {
+        return rpcConfigParser.processConfig(config);
     }
 }

@@ -44,7 +44,7 @@ public class InstanceFactory {
     }
 
     /**
-     * for formatter a RpcResponse
+     * for format a RpcResponse
      *
      * @return
      */
