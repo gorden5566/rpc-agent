@@ -14,6 +14,7 @@ public interface InvokerBuilder {
      *
      * @param config
      * @return
+     * @throws Exception
      */
-    Invoker buildInvoker(InvokerConfig config);
+    Invoker buildInvoker(InvokerConfig config) throws Exception;
 }

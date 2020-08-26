@@ -10,7 +10,7 @@ import com.gorden5566.rpc.agent.core.spi.InvokerBuilder;
  */
 public class SimpleInvokerBuilder implements InvokerBuilder {
     @Override
-    public Invoker buildInvoker(InvokerConfig config) {
+    public Invoker buildInvoker(InvokerConfig config) throws Exception {
         return new SimpleInvoker(config);
     }
 }
