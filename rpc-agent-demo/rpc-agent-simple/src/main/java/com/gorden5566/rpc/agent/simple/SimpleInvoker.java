@@ -1,6 +1,6 @@
 package com.gorden5566.rpc.agent.simple;
 
-import com.gorden5566.rpc.agent.core.internal.Invoker;
+import com.gorden5566.rpc.agent.core.internal.AbstractInvoker;
 import com.gorden5566.rpc.agent.core.internal.RpcRequest;
 import com.gorden5566.rpc.agent.core.internal.RpcResponse;
 import com.gorden5566.rpc.agent.core.internal.config.InvokerConfig;
@@ -9,7 +9,7 @@ import com.gorden5566.rpc.agent.core.internal.config.InvokerConfig;
  * @author gorden5566
  * @date 2020/08/23
  */
-public class SimpleInvoker implements Invoker {
+public class SimpleInvoker extends AbstractInvoker {
 
     private InvokerConfig config;
 
@@ -21,12 +21,12 @@ public class SimpleInvoker implements Invoker {
     }
 
     @Override
-    public void start() throws Exception {
+    public void doStart() throws Exception {
         // ignore
     }
 
     @Override
-    public void stop() throws Exception {
+    public void doStop() throws Exception {
         // ignore
     }
 

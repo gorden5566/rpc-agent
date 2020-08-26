@@ -15,12 +15,12 @@ public class DefaultInvoker extends AbstractInvoker {
     }
 
     @Override
-    public void start() throws Exception {
+    public void doStart() throws Exception {
         // ignore
     }
 
     @Override
-    public void stop() throws Exception {
+    public void doStop() throws Exception {
         // ignore
     }
 

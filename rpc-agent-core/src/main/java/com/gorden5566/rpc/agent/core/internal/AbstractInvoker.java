@@ -6,7 +6,7 @@ import com.gorden5566.rpc.agent.core.internal.config.InvokerConfig;
  * @author gorden5566
  * @date 2020/08/27
  */
-public abstract class AbstractInvoker implements Invoker {
+public abstract class AbstractInvoker extends AbstractLifeCycle implements Invoker {
     private InvokerConfig config;
 
     public AbstractInvoker() {

@@ -6,22 +6,7 @@ import com.gorden5566.rpc.agent.core.internal.config.InvokerConfig;
  * @author gorden5566
  * @date 2020/08/17
  */
-public interface Invoker {
-
-    /**
-     * start
-     *
-     * @throws Exception
-     */
-    void start() throws Exception;
-
-    /**
-     * stop
-     *
-     * @throws Exception
-     */
-    void stop() throws Exception;
-
+public interface Invoker extends LifeCycle {
     /**
      * invoke
      *
