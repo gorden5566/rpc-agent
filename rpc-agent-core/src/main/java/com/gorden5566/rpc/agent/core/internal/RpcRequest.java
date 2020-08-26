@@ -41,6 +41,11 @@ public class RpcRequest {
      */
     private String tag;
 
+    /**
+     * request timeOut
+     */
+    private Integer timeOut;
+
     public String getServiceName() {
         return serviceName;
     }
@@ -95,5 +100,13 @@ public class RpcRequest {
 
     public void setTag(String tag) {
         this.tag = tag;
+    }
+
+    public Integer getTimeOut() {
+        return timeOut;
+    }
+
+    public void setTimeOut(Integer timeOut) {
+        this.timeOut = timeOut;
     }
 }

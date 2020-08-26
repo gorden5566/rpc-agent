@@ -9,7 +9,6 @@ import com.gorden5566.rpc.agent.core.internal.RpcRequestConfig;
 public class InvokerConfig {
     private String host;
     private Integer port;
-    private Integer timeout;
 
     public InvokerConfig() {
     }
@@ -17,7 +16,6 @@ public class InvokerConfig {
     public InvokerConfig(RpcRequestConfig config) {
         this.host = config.getHost();
         this.port = config.getPort();
-        this.timeout = config.getTimeout();
     }
 
     public String getHost() {
@@ -34,13 +32,5 @@ public class InvokerConfig {
 
     public void setPort(Integer port) {
         this.port = port;
-    }
-
-    public Integer getTimeout() {
-        return timeout;
-    }
-
-    public void setTimeout(Integer timeout) {
-        this.timeout = timeout;
     }
 }
