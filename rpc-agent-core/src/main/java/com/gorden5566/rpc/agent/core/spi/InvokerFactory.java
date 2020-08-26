@@ -14,6 +14,23 @@ public interface InvokerFactory {
      *
      * @param config
      * @return
+     * @throws Exception
      */
-    Invoker getInvoker(InvokerConfig config);
+    Invoker getInvoker(InvokerConfig config) throws Exception;
+
+    /**
+     * pre process a invoker
+     *
+     * @param invoker
+     * @throws Exception
+     */
+    void preProcess(Invoker invoker) throws Exception;
+
+    /**
+     * post process a invoker
+     *
+     * @param invoker
+     * @throws Exception
+     */
+    void postProcess(Invoker invoker) throws Exception;
 }

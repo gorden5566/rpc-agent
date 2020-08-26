@@ -42,18 +42,18 @@ public class DefaultInvokerProxy implements InvokerProxy {
         ParsedRequestConfig parsedConfig = parseConfig(config);
 
         // get invoker
-        Invoker invoker = getInvoker(parsedConfig.getInvokerConfig());
+        Invoker invoker = invokerFactory.getInvoker(parsedConfig.getInvokerConfig());
+
+        // pre precess invoker
+        invokerFactory.preProcess(invoker);
 
         // do invoke
-        invoker.start();
         RpcResponse response = invoker.invoke(parsedConfig.getRpcRequest());
-        invoker.stop();
+
+        // post precess invoker
+        invokerFactory.postProcess(invoker);
 
         return response;
-    }
-
-    private Invoker getInvoker(InvokerConfig config) {
-        return invokerFactory.getInvoker(config);
     }
 
     private ParsedRequestConfig parseConfig(RpcRequestConfig config) {

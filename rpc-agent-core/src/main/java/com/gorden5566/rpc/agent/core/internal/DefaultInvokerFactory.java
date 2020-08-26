@@ -12,8 +12,18 @@ public class DefaultInvokerFactory implements InvokerFactory {
     private InvokerBuilder invokerBuilder = InstanceFactory.getInvokerBuilder();
 
     @Override
-    public Invoker getInvoker(InvokerConfig config) {
+    public Invoker getInvoker(InvokerConfig config) throws Exception {
         // just build a invoker instance now
         return invokerBuilder.buildInvoker(config);
+    }
+
+    @Override
+    public void preProcess(Invoker invoker) throws Exception {
+        invoker.start();
+    }
+
+    @Override
+    public void postProcess(Invoker invoker) throws Exception {
+        invoker.stop();
     }
 }
