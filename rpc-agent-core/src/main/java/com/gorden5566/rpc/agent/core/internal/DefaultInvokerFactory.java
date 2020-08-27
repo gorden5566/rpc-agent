@@ -19,9 +19,7 @@ public class DefaultInvokerFactory implements InvokerFactory {
 
     @Override
     public void preProcess(Invoker invoker) throws Exception {
-        if (!invoker.isStarted() && !invoker.isStopped()) {
-            invoker.start();
-        }
+        invoker.start();
     }
 
     @Override

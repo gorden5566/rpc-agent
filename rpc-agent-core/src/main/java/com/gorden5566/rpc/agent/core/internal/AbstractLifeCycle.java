@@ -26,10 +26,14 @@ public abstract class AbstractLifeCycle implements LifeCycle {
     public void start() throws Exception {
         synchronized (this) {
             try {
+                if (state == STARTED || state == STARTING) {
+                    return;
+                }
+                setStarting();
                 doStart();
-            } catch (Exception e) {
-                throw e;
-            } catch (Error e) {
+                setStarted();
+            } catch (Throwable e) {
+                setFailed(e);
                 throw e;
             }
         }
@@ -39,22 +43,71 @@ public abstract class AbstractLifeCycle implements LifeCycle {
     public void stop() throws Exception {
         synchronized (this) {
             try {
+                if (state == STOPPING || state == STOPPED) {
+                    return;
+                }
+                setStopping();
                 doStop();
-            } catch (Exception e) {
-                throw e;
-            } catch (Error e) {
+                setStopped();
+            } catch (Throwable e) {
+                setFailed(e);
                 throw e;
             }
         }
     }
 
     @Override
-    public boolean isStarted() {
+    public boolean isRunning() {
+        return state == STARTED || state == STARTING;
+    }
+
+    @Override
+    public boolean isStarted()
+    {
         return state == STARTED;
     }
 
     @Override
-    public boolean isStopped() {
+    public boolean isStarting()
+    {
+        return state == STARTING;
+    }
+
+    @Override
+    public boolean isStopping()
+    {
+        return state == STOPPING;
+    }
+
+    @Override
+    public boolean isStopped()
+    {
         return state == STOPPED;
+    }
+
+    @Override
+    public boolean isFailed()
+    {
+        return state == FAILED;
+    }
+
+    private void setStarting() {
+        this.state = STARTING;
+    }
+
+    private void setStarted() {
+        this.state = STARTED;
+    }
+
+    private void setStopping() {
+        this.state = STOPPING;
+    }
+
+    private void setStopped() {
+        this.state = STOPPED;
+    }
+
+    private void setFailed(Throwable t) {
+        this.state = FAILED;
     }
 }

@@ -21,6 +21,13 @@ public interface LifeCycle {
     void stop() throws Exception;
 
     /**
+     * Check if the component is starting or has been started.
+     *
+     * @return
+     */
+    boolean isRunning();
+
+    /**
      * Check if the component has been started.
      *
      * @return
@@ -28,9 +35,30 @@ public interface LifeCycle {
     boolean isStarted();
 
     /**
+     * Check if the component is starting.
+     *
+     * @return
+     */
+    boolean isStarting();
+
+    /**
+     * Check if the component is stopping.
+     *
+     * @return
+     */
+    boolean isStopping();
+
+    /**
      * Check if the component has been stopped.
      *
      * @return
      */
     boolean isStopped();
+
+    /**
+     * Check if the component has failed to start or has failed to stop.
+     *
+     * @return
+     */
+    boolean isFailed();
 }
