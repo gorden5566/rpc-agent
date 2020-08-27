@@ -24,8 +24,6 @@ public class DefaultInvokerFactory implements InvokerFactory {
 
     @Override
     public void postProcess(Invoker invoker) throws Exception {
-        if (invoker.isStarted() && !invoker.isStopped()) {
-            invoker.stop();
-        }
+        invoker.stop();
     }
 }
