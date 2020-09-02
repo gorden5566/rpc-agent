@@ -28,11 +28,12 @@ public class InvokerServlet extends HttpServlet {
             // parse request
             RpcRequestConfig config = buildRpcRequestConfig(request);
 
+            // invoke
             String result = agent.invoke(config);
 
+            // write result
             HttpUtils.writeJson(response, result);
-
-            response.addHeader("reqid", agent.getReqId());
+            response.addHeader("reqId", agent.getReqId());
         } catch (Exception e) {
             RpcResponse error = RpcResponse.newThrowableError("remote call failed", e);
             HttpUtils.writeJson(response, JsonUtils.toPrettyJson(error));

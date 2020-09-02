@@ -44,11 +44,7 @@ public class Agent {
     }
 
     public String getReqId() {
-        ParsedRequestConfig config = getRpcContext().getConfig();
-        if (config == null) {
-            return null;
-        }
-        return config.getRpcRequest().getReqId();
+        return getRpcContext().getReqId();
     }
 
     public RpcContext getRpcContext() {

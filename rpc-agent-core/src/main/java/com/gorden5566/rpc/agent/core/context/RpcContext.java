@@ -1,5 +1,6 @@
 package com.gorden5566.rpc.agent.core.context;
 
+import com.gorden5566.rpc.agent.core.internal.RpcRequest;
 import com.gorden5566.rpc.agent.core.internal.config.ParsedRequestConfig;
 
 /**
@@ -35,5 +36,13 @@ public class RpcContext {
 
     public void setConfig(ParsedRequestConfig config) {
         this.config = config;
+    }
+
+    public String getReqId() {
+        if (config == null) {
+            return null;
+        }
+        RpcRequest rpcRequest = config.getRpcRequest();
+        return rpcRequest == null ? null : rpcRequest.getReqId();
     }
 }
