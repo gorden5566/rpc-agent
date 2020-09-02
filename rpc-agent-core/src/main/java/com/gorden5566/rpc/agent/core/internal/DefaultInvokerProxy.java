@@ -1,8 +1,6 @@
 package com.gorden5566.rpc.agent.core.internal;
 
-import com.gorden5566.rpc.agent.core.internal.config.InvokerConfig;
 import com.gorden5566.rpc.agent.core.internal.config.ParsedRequestConfig;
-import com.gorden5566.rpc.agent.core.context.RpcContext;
 import com.gorden5566.rpc.agent.core.spi.InvokerFactory;
 import com.gorden5566.rpc.agent.core.spi.InvokerProxy;
 import com.gorden5566.rpc.agent.core.spi.RpcConfigParser;
@@ -19,15 +17,7 @@ public class DefaultInvokerProxy implements InvokerProxy {
 
     @Override
     public String invoke(RpcRequestConfig config) throws Exception {
-        RpcResponse response = null;
-
-        try {
-            RpcContext.getContext().setTag(config.getTag());
-            response = doInvoke(config);
-        } finally {
-            RpcContext.removeContext();
-        }
-
+        RpcResponse response = doInvoke(config);
         return formatResponse(response);
     }
 

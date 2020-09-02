@@ -112,11 +112,14 @@ public class Command {
             System.out.println("read config file failed: " + e.getMessage());
         }
 
+        Agent agent = Agent.newInstance();
         try {
-            String result = Agent.invoke(config);
+            String result = agent.invoke(config);
             System.out.println(result);
         } catch (Exception e) {
             System.out.println("remote call failed: " + e.getMessage());
+        } finally {
+            agent.destroy();
         }
         return true;
     }

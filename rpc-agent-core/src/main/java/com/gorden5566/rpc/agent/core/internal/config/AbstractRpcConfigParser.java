@@ -5,6 +5,7 @@ import java.util.UUID;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 import com.alibaba.fastjson.JSONArray;
+import com.gorden5566.rpc.agent.core.context.RpcContext;
 import com.gorden5566.rpc.agent.core.internal.RpcRequest;
 import com.gorden5566.rpc.agent.core.internal.RpcRequestBuilder;
 import com.gorden5566.rpc.agent.core.internal.RpcRequestConfig;
@@ -46,6 +47,7 @@ public abstract class AbstractRpcConfigParser implements RpcConfigParser {
         ParsedRequestConfig parsedConfig = new ParsedRequestConfig();
         parsedConfig.setRpcRequest(buildRpcRequest(config));
         parsedConfig.setInvokerConfig(buildInvokerConfig(config));
+        RpcContext.getContext().setConfig(parsedConfig);
 
         return parsedConfig;
     }

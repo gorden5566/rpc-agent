@@ -23,16 +23,21 @@ public class InvokerServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
         throws ServletException, IOException {
 
+        Agent agent = Agent.newInstance();
         try {
             // parse request
             RpcRequestConfig config = buildRpcRequestConfig(request);
 
-            String result = Agent.invoke(config);
+            String result = agent.invoke(config);
 
             HttpUtils.writeJson(response, result);
+
+            response.addHeader("reqid", agent.getReqId());
         } catch (Exception e) {
             RpcResponse error = RpcResponse.newThrowableError("remote call failed", e);
             HttpUtils.writeJson(response, JsonUtils.toPrettyJson(error));
+        } finally {
+            agent.destroy();
         }
     }
 
