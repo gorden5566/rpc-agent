@@ -55,7 +55,7 @@ public class Agent {
         return RpcContext.getContext();
     }
 
-    public void destroy() {
+    public void finishInvoke() {
         RpcContext.removeContext();
     }
 }

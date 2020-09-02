@@ -37,7 +37,7 @@ public class InvokerServlet extends HttpServlet {
             RpcResponse error = RpcResponse.newThrowableError("remote call failed", e);
             HttpUtils.writeJson(response, JsonUtils.toPrettyJson(error));
         } finally {
-            agent.destroy();
+            agent.finishInvoke();
         }
     }
 

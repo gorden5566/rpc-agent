@@ -95,7 +95,7 @@ public class Command {
         } catch (Exception e) {
             System.out.println("remote call failed: " + e.getMessage());
         } finally {
-            agent.destroy();
+            agent.finishInvoke();
         }
         return true;
     }
