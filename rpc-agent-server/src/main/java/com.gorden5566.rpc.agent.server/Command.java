@@ -114,8 +114,7 @@ public class Command {
 
         Agent agent = Agent.newInstance();
         try {
-            String result = agent.invoke(config);
-            System.out.println(result);
+            agent.invoke(config);
         } catch (Exception e) {
             System.out.println("remote call failed: " + e.getMessage());
         } finally {
