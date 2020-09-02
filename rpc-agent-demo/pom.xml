@@ -11,7 +11,6 @@
 
     <artifactId>rpc-agent-demo</artifactId>
     <packaging>pom</packaging>
-    <version>${project.version}</version>
     <modules>
         <module>rpc-agent-simple</module>
     </modules>
