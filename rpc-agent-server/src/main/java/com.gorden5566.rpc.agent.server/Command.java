@@ -52,7 +52,9 @@ public class Command {
         }
 
         if (version) {
-            System.out.println(Consts.getProgramName() + ", version " + Consts.getVersion());
+            System.out.println("name: " + Consts.getProgramName());
+            System.out.println("version: " + Consts.getVersion());
+            System.out.println("author: " + Consts.getAuthor());
             return;
         }
 

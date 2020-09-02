@@ -9,6 +9,7 @@ import org.apache.commons.lang.StringUtils;
 public class Consts {
     private static String programName = "rpc-agent";
     private static String version = "unknown";
+    private static String author = "unknown";
 
     static {
         init();
@@ -26,6 +27,11 @@ public class Consts {
         if (StringUtils.isNotBlank(implVersion)) {
             version = implVersion;
         }
+
+        String implVendor = pack.getImplementationVendor();
+        if (StringUtils.isNotBlank(implVendor)) {
+            author = implVendor;
+        }
     }
 
     public static String getProgramName() {
@@ -38,5 +44,9 @@ public class Consts {
 
     public static String getVersion() {
         return version;
+    }
+
+    public static String getAuthor() {
+        return author;
     }
 }
