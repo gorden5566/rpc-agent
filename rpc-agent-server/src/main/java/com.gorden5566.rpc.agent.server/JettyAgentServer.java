@@ -24,7 +24,7 @@ public class JettyAgentServer extends AbstractAgentServer {
         InetSocketAddress address = new InetSocketAddress(host, port);
         server = new Server(address);
 
-        ServletContextHandler context = new ServletContextHandler(ServletContextHandler.SESSIONS);
+        ServletContextHandler context = new ServletContextHandler();
         context.setContextPath("/");
         server.setHandler(context);
 
