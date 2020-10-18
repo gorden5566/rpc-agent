@@ -14,6 +14,14 @@ public class ExtensionLoader {
 
     private static Map<Class<?>, Object> extensionMap = new ConcurrentHashMap<>();
 
+    /**
+     * load first spi implementation
+     *
+     * @param clazz spi class
+     * @param supplier default implementation
+     * @param <T>
+     * @return
+     */
     public static <T> T loadFirst(Class<T> clazz, Supplier<T> supplier) {
         T extension = (T) extensionMap.get(clazz);
 
@@ -28,14 +36,14 @@ public class ExtensionLoader {
 
             // cache instance
             if (extension != null) {
-                extensionMap.put(clazz, extension);
+                extensionMap.putIfAbsent(clazz, extension);
             }
         }
         return extension;
     }
 
     /**
-     * 加载第一个 spi 实现
+     * load first spi implementation
      *
      * @param clazz
      * @param <T>
@@ -50,7 +58,7 @@ public class ExtensionLoader {
     }
 
     /**
-     * 加载所有的 spi 实现
+     * load all spi implementation
      *
      * @param clazz
      * @param <T>

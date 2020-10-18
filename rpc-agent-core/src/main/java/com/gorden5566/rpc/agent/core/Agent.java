@@ -13,7 +13,7 @@ import com.gorden5566.rpc.agent.core.util.Consts;
 public class Agent {
 
     /**
-     * set programName
+     * set program name
      *
      * @param programName
      */
@@ -21,6 +21,11 @@ public class Agent {
         Consts.setProgramName(programName);
     }
 
+    /**
+     * create a agent
+     *
+     * @return
+     */
     public static Agent newInstance() {
         return new Agent();
     }
@@ -43,14 +48,27 @@ public class Agent {
         return result;
     }
 
+    /**
+     * get request id
+     *
+     * @return
+     */
     public String getReqId() {
         return getRpcContext().getReqId();
     }
 
+    /**
+     * get rpc context
+     *
+     * @return
+     */
     public RpcContext getRpcContext() {
         return RpcContext.getContext();
     }
 
+    /**
+     * finish a rpc request
+     */
     public void finishInvoke() {
         RpcContext.removeContext();
     }

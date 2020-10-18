@@ -34,18 +34,38 @@ public class Consts {
         }
     }
 
+    /**
+     * get program name
+     *
+     * @return
+     */
     public static String getProgramName() {
         return programName;
     }
 
+    /**
+     * set program name
+     *
+     * @param programName
+     */
     public static void setProgramName(String programName) {
         Consts.programName = programName;
     }
 
+    /**
+     * get agent version
+     *
+     * @return
+     */
     public static String getVersion() {
         return version;
     }
 
+    /**
+     * get author
+     *
+     * @return
+     */
     public static String getAuthor() {
         return author;
     }

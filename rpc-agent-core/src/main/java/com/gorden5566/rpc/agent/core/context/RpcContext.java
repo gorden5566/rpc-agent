@@ -14,30 +14,63 @@ public class RpcContext {
 
     private ParsedRequestConfig config;
 
+    /**
+     * get rpc context
+     *
+     * @return
+     */
     public static RpcContext getContext() {
         return LOCAL.get();
     }
 
+    /**
+     * remove context after a rpc call
+     */
     public static void removeContext() {
         LOCAL.remove();
     }
 
+    /**
+     * get tag
+     *
+     * @return
+     */
     public String getTag() {
         return tag;
     }
 
+    /**
+     * set tag
+     *
+     * @param tag
+     */
     public void setTag(String tag) {
         this.tag = tag;
     }
 
+    /**
+     * get parsed rpc request config
+     *
+     * @return
+     */
     public ParsedRequestConfig getConfig() {
         return config;
     }
 
+    /**
+     * set parsed rpc request config
+     *
+     * @param config
+     */
     public void setConfig(ParsedRequestConfig config) {
         this.config = config;
     }
 
+    /**
+     * get request id
+     *
+     * @return
+     */
     public String getReqId() {
         if (config == null) {
             return null;
