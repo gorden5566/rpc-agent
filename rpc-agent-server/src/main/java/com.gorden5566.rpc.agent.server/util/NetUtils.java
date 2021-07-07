@@ -7,10 +7,6 @@ import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
 
-/**
- * @author gorden5566
- * @date 2020/08/19
- */
 public class NetUtils {
     public static String getFirstLocalIp() {
         List<String> allNoLoopbackAddresses = getAllLocalIp();

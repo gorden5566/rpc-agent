@@ -60,7 +60,7 @@ public class Command {
 
         if (server) {
             String host = local ? DEFAULT_HOST : NetUtils.getFirstLocalIp();
-            AgentServer server = new JettyAgentServer(host, port);
+            AgentServer server = new NettyAgentServer(host, port);
             try {
                 server.start();
             } catch (Exception e) {

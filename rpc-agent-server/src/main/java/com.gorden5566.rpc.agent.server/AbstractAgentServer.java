@@ -38,9 +38,9 @@ public abstract class AbstractAgentServer implements AgentServer {
         this.port = port;
     }
 
-    protected String formatAddress(InetSocketAddress address, String path) {
+    protected String formatAddress(String host, int port) {
         StringBuilder sb = new StringBuilder();
-        sb.append(address.getHostName()).append(":").append(address.getPort()).append(path);
+        sb.append(host).append(":").append(port).append(INVOKER_PATH);
         return sb.toString();
     }
 }
