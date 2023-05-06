@@ -42,8 +42,11 @@ public class Agent {
 
         String result = InstanceFactory.getInvokerProxy().invoke(config);
 
-        System.out.println("reqid: " + getReqId());
-        System.out.println(result);
+        StringBuilder sb = new StringBuilder();
+        sb.append("time: " + System.currentTimeMillis()).append("\r\n")
+            .append("reqid: " + getReqId()).append("\r\n")
+            .append(result).append("\r\n");
+        System.out.println(sb);
 
         return result;
     }

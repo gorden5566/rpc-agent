@@ -8,7 +8,7 @@
     <artifactId>rpc-agent-parent</artifactId>
     <packaging>pom</packaging>
     <name>${project.artifactId}</name>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.1-SNAPSHOT</version>
     <modules>
         <module>rpc-agent-core</module>
         <module>rpc-agent-server</module>

@@ -13,7 +13,7 @@ public class DefaultInvokerFactory implements InvokerFactory {
 
     @Override
     public Invoker getInvoker(InvokerConfig config) throws Exception {
-        // just build a invoker instance now
+        // just build an invoker instance now
         return invokerBuilder.buildInvoker(config);
     }
 

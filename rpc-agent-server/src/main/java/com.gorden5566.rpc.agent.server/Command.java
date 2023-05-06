@@ -59,12 +59,12 @@ public class Command {
         }
 
         if (server) {
-            String host = local ? DEFAULT_HOST : NetUtils.getFirstLocalIp();
+            String host = local ? DEFAULT_HOST : "0.0.0.0";
             AgentServer server = new NettyAgentServer(host, port);
             try {
                 server.start();
             } catch (Exception e) {
-                System.out.println("start server failed!");
+                System.out.println("start server failed!" + e);
             }
             return;
         }
