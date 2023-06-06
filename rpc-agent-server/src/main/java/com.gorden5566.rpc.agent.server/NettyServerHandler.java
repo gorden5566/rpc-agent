@@ -24,12 +24,14 @@ import static io.netty.handler.codec.http.HttpResponseStatus.OK;
  * @author gorden5566
  * @date 2021/07/06
  */
-public class NettyServerHandler extends SimpleChannelInboundHandler<HttpObject> {
+public class NettyServerHandler extends SimpleChannelInboundHandler<FullHttpRequest> {
 
     private static final byte[] DEFAULT_CONTENT =
         "Wrong url, please use '/agent' as path!!!".getBytes(StandardCharsets.UTF_8);
 
-    private HttpRequest request;
+    private final Agent agent = Agent.newInstance();
+
+    private FullHttpRequest request;
 
     @Override
     public void channelReadComplete(ChannelHandlerContext ctx) {
@@ -37,28 +39,23 @@ public class NettyServerHandler extends SimpleChannelInboundHandler<HttpObject> 
     }
 
     @Override
-    protected void channelRead0(ChannelHandlerContext ctx, HttpObject msg) throws Exception {
-        if (msg instanceof HttpRequest) {
-            this.request = (HttpRequest)msg;
-        } else if (msg instanceof HttpContent) {
-            HttpContent httpContent = (HttpContent)msg;
-
-            FullHttpResponse response = null;
-            String uri = request.uri();
-            switch (uri) {
-                case "/agent":
-                    response = invoke(httpContent);
-                    break;
-                default:
-                    response = getDefaultResponse();
-            }
-
-            setKeepAlive(response);
-
-            HttpUtil.setContentLength(response, response.content().readableBytes());
-
-            ctx.writeAndFlush(response);
+    protected void channelRead0(ChannelHandlerContext ctx, FullHttpRequest request) throws Exception {
+        this.request = request;
+        FullHttpResponse response = null;
+        String uri = request.uri();
+        switch (uri) {
+            case "/agent":
+                response = invoke(request.content().toString(CharsetUtil.UTF_8));
+                break;
+            default:
+                response = getDefaultResponse();
         }
+
+        setKeepAlive(response);
+
+        HttpUtil.setContentLength(response, response.content().readableBytes());
+
+        ctx.writeAndFlush(response);
     }
 
     private FullHttpResponse getDefaultResponse() {
@@ -79,11 +76,9 @@ public class NettyServerHandler extends SimpleChannelInboundHandler<HttpObject> 
         }
     }
 
-    private FullHttpResponse invoke(HttpContent httpContent) {
-        Agent agent = Agent.newInstance();
+    private FullHttpResponse invoke(String request) {
         try {
             // parse request
-            String request = httpContent.content().toString(CharsetUtil.UTF_8);
             RpcRequestConfig config = buildRpcRequestConfig(request);
 
             // invoke
@@ -97,7 +92,7 @@ public class NettyServerHandler extends SimpleChannelInboundHandler<HttpObject> 
 
             return response;
         } catch (Exception e) {
-            RpcResponse error = RpcResponse.newThrowableError("remote call failed", e);
+            RpcResponse error = RpcResponse.newThrowableError("remote call failed: [" + request + "]", e);
             FullHttpResponse response = new DefaultFullHttpResponse(this.request.protocolVersion(), OK,
                 Unpooled.copiedBuffer(JsonUtils.toPrettyJson(error).getBytes()));
             response.headers().set(CONTENT_TYPE, "application/json;charset=UTF-8");

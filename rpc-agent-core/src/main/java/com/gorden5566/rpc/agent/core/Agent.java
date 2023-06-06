@@ -3,7 +3,6 @@ package com.gorden5566.rpc.agent.core;
 import com.gorden5566.rpc.agent.core.context.RpcContext;
 import com.gorden5566.rpc.agent.core.internal.InstanceFactory;
 import com.gorden5566.rpc.agent.core.internal.RpcRequestConfig;
-import com.gorden5566.rpc.agent.core.internal.config.ParsedRequestConfig;
 import com.gorden5566.rpc.agent.core.util.Consts;
 
 /**
@@ -57,7 +56,8 @@ public class Agent {
      * @return
      */
     public String getReqId() {
-        return getRpcContext().getReqId();
+        final String reqId = getRpcContext().getReqId();
+        return reqId == null ? "unknown" : reqId;
     }
 
     /**
